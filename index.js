@@ -24,9 +24,11 @@ function changeCatInfo(id) {
     .then((json) => alert(json.message));
 }
 function changeDescription(value) {
+  console.log(value);
   changedCat.description = value;
 }
 function changeImg(value) {
+  console.log(value);
   changedCat.image = value;
 }
 function changeModal(cat) {
@@ -35,8 +37,8 @@ function changeModal(cat) {
     "afterbegin",
     `<div class ='cardModal' style='display:flex;flex-direction:column'>
     <p>Можно менять описание и фото</p>
-    <input placeholder = ${cat.description}  value = ${cat.description} onchange = 'changeDescription(value)'>
-    <input placeholder = 'ссылка на новую картинку'  value = ${cat.image}onchange = 'changeImg(value)'>
+    <input placeholder = 'введите описание'  value = ${cat.description} onchange = 'changeDescription(value)'>
+    <input placeholder = 'ссылка на фото'  value = ${cat.image} onchange = 'changeImg(value)'>
     <img src =${cat.image} alt ='sorry image not fount'>
     <button onclick= 'changeCatInfo(${cat.id})'>Редактировать</button>
     <button onclick = 'closeModal()'>Закрыть</button>
@@ -129,4 +131,5 @@ function deleteCat(catID) {
     .then((res) => res.json())
     .then((json) => alert(json.message))
     .then(() => window.location.reload());
+  localStorage.removeItem(catID);
 }
